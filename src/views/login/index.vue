@@ -73,6 +73,15 @@ export default {
       showDialog: false
     }
   },
+  created() {
+    // window.addEventListener('hashchange', this.afterQRScan);
+  },
+  mounted() {
+    this.splitWords();
+  },
+  destroyed() {
+    // window.removeEventListener('hashchange', this.afterQRScan);
+  },
   methods: {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
@@ -94,9 +103,9 @@ export default {
     splitWords() {
       const quote = document.querySelector('blockquote q');
       console.log(quote);
-      quote.innerHTML.replace(/(<([^>]+)>)/ig, '');
-      quotewords = quote.innerHTML.split(' ');
-      wordCount = quotewords.length;
+      quote.innerText.replace(/(<([^>]+)>)/ig, '');
+      const quotewords = quote.innerText.split(' ');
+      const wordCount = quotewords.length;
       quote.innerHTML = '';
       for (let i = 0; i < wordCount; i++) {
         quote.innerHTML += '<span>' + quotewords[i] + '</span>';
@@ -104,8 +113,9 @@ export default {
           quote.innerHTML += ' ';
         }
       }
-      quotewords = document.querySelectorAll('blockquote q span');
-      fadeWords(quotewords);
+      const quoteword = document.querySelectorAll('blockquote q span');
+      console.log(quoteword);
+      this.fadeWords(quoteword);
     },
     getRandom(min, max) {
       return Math.random() * (max - min) + min;
@@ -114,26 +124,19 @@ export default {
       Array.prototype.forEach.call(quotewords, word => {
         word.animate([{
           opacity: 0,
-          filter: 'blur(' + getRandom(2, 5) + 'px)'
+          filter: 'blur(' + this.getRandom(2, 5) + 'px)'
         }, {
           opacity: 1,
           filter: 'blur(0px)'
         }],
           {
             duration: 1000,
-            delay: getRandom(500, 3300),
+            delay: this.getRandom(500, 3300),
             fill: 'forwards'
           }
         )
       })
     }
-  },
-  created() {
-    // window.addEventListener('hashchange', this.afterQRScan);
-    splitWords();
-  },
-  destroyed() {
-    // window.removeEventListener('hashchange', this.afterQRScan);
   }
 }
 </script>
@@ -197,8 +200,11 @@ export default {
   .forget-pwd {
     color: #fff;
   }
-
   blockquote {
+    width: 230%;
+    margin-top: -20%;
+    margin-left: -60%;
+    background-color: #333333;
     font-size: 3rem;
   }
   cite {
@@ -213,6 +219,7 @@ export default {
   blockquote q {
     font-family: Georgia, serif;
     font-style: italic;
+    color: #DC143C;
     letter-spacing: .1rem;
   }
   blockquote q span {
