@@ -102,7 +102,6 @@ export default {
     },
     splitWords() {
       const quote = document.querySelector('blockquote q');
-      console.log(quote);
       quote.innerText.replace(/(<([^>]+)>)/ig, '');
       const quotewords = quote.innerText.split(' ');
       const wordCount = quotewords.length;
@@ -114,7 +113,6 @@ export default {
         }
       }
       const quoteword = document.querySelectorAll('blockquote q span');
-      console.log(quoteword);
       this.fadeWords(quoteword);
     },
     getRandom(min, max) {

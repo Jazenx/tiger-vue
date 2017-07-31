@@ -64,6 +64,9 @@ const Tab = _import('example/tab/index');
 /* permission */
 const Permission = _import('permission/index');
 
+/* My Tiger Page*/
+const tigerIndex = _import('tiger/index');
+
 Vue.use(Router);
 
  /**
@@ -104,6 +107,16 @@ export default new Router({
 });
 
 export const asyncRouterMap = [
+  {
+    path: '/tiger',
+    component: Layout,
+    redirect: '/tiger/index',
+    name: 'Tiger',
+    icon: 'zujian',
+    children: [
+      { path: 'index', component: tigerIndex, name: 'Demo1' }
+    ]
+  },
   {
     path: '/permission',
     component: Layout,
