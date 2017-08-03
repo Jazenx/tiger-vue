@@ -1,11 +1,11 @@
 <template>
   <div>
-
+    <todo></todo>
   </div>
 </template>
 
 <script>
-import todo from 'tiger/todo.vue';
+import todo from './todolist/todo.vue';
 export default {
   components: { todo }
 }

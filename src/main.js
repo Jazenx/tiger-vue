@@ -111,7 +111,6 @@ if (process.env.NODE_ENV === 'production') {
     })
   };
 }
-
 new Vue({
   el: '#app',
   router,
