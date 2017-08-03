@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'Todo',
+  name: 'tigerTodo',
   props: ['todo'],
   data() {
     return {
