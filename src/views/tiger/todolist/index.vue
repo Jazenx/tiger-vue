@@ -2,7 +2,7 @@
   <section class="todoapp">
     <!-- header -->
     <header class="header">
-      <input class="new-todo" autofocus autocomplete="off" placeholder="TODO ?" @keyupm.enter="addTodo">
+      <input class="new-todo" autofocus autocomplete="off" placeholder="TODO ?" @keyup.enter="addTodo">
     </header>
     <!-- main section -->
     <section class="main" v-show="todos.length">
@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     setLocalStorage() {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringfy(this.todos))
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(this.todos))
     },
     addTodo(e) {
       const text = e.target.value;
