@@ -66,6 +66,8 @@ const Permission = _import('permission/index');
 
 /* My Tiger Page*/
 const tigerIndex = _import('tiger/index');
+const tigerVerse = _import('tiger/verse/index');
+
 
 Vue.use(Router);
 
@@ -114,7 +116,8 @@ export const asyncRouterMap = [
     name: 'Tiger',
     icon: 'zujian',
     children: [
-      { path: 'index', component: tigerIndex, name: 'Demo1' }
+      { path: 'index', component: tigerIndex, name: 'todo list' },
+      { path: 'verse', component: tigerVerse, name: 'Verse' }
     ]
   },
   {
