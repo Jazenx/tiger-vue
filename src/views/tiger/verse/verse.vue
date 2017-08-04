@@ -1,8 +1,8 @@
 <template>
   <div>
-      <el-input v-model="verseData" autofocus autocomplete="on" 
+      <input v-model="verseData" autofocus autocomplete="off" 
         @keyup.enter="splitWords"
-      ></el-input>
+      ></input>
     <blockquote contenteditable="true">
         <q>{{ verseData }}</q>
         <cite>Jason Zhou</cite>
@@ -38,8 +38,8 @@ export default {
     },
     splitWords() {
       const quote = document.querySelector('blockquote q');
-      quote.innerText.replace(/(<([^>]+)>)/ig, '');
-      const quotewords = quote.innerText.split(' ');
+      const quoteText = this.verseData.replace(/(<([^>]+)>)/ig, '');
+      const quotewords = quoteText.split(' ');
       const wordCount = quotewords.length;
       quote.innerHTML = '';
       for (let i = 0; i < wordCount; i++) {
@@ -74,11 +74,8 @@ export default {
   }
 }
 </script>
-<<style scoped>
+<style scoped>
 blockquote {
-    width: 230%;
-    margin-top: -20%;
-    margin-left: -60%;
     background-color: #333333;
     font-size: 3rem;
   }
