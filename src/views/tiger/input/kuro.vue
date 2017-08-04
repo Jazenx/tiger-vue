@@ -1,128 +1,16 @@
 <template>
   <div>
-    <div class="topInput">
-   <span class="input input--kuro">
-					<input v-model="verseData" class="input__field input__field--kuro" type="text" id="input-7" @keyup.enter="splitWords" />
+     <span class="input input--kuro">
+					<input class="input__field input__field--kuro" type="text" id="input-7" />
 					<label class="input__label input__label--kuro" for="input-7">
-						<span class="input__label-content input__label-content--kuro">Please enter the verse</span>
+						<span class="input__label-content input__label-content--kuro">Verse</span>
 					</label>
-		</span>
-    </div>
-    <blockquote contenteditable="true">
-        <q>{{ verseData }}</q>
-        <cite>Jason Zhou</cite>
-    </blockquote>
+			</span>
   </div>  
 </template>
 
-<script>
-export default {
-  name: 'tigerVerse',
-  data() {
-    return {
-      verseData: 'In me the tiger sniffs the rose.'
-    }
-  },
-  methods: {
-    handleLogin() {
-      this.$refs.loginForm.validate(valid => {
-        if (valid) {
-          this.loading = true;
-          this.$store.dispatch('LoginByEmail', this.loginForm).then(() => {
-            this.loading = false;
-            this.$router.push({ path: '/' });
-            // this.showDialog = true;
-          }).catch(() => {
-            this.loading = false;
-          });
-        } else {
-          console.log('error submit!!');
-          return false;
-        }
-      });
-    },
-    splitWords() {
-      const quote = document.querySelector('blockquote q');
-      const quoteText = this.verseData.replace(/(<([^>]+)>)/ig, '');
-      const quotewords = quoteText.split(' ');
-      const wordCount = quotewords.length;
-      quote.innerHTML = '';
-      for (let i = 0; i < wordCount; i++) {
-        quote.innerHTML += '<span>' + quotewords[i] + '</span>';
-        if (i < quotewords.length - 1) {
-          quote.innerHTML += ' ';
-        }
-      }
-      const quoteword = document.querySelectorAll('blockquote q span');
-      this.fadeWords(quoteword);
-    },
-    getRandom(min, max) {
-      return Math.random() * (max - min) + min;
-    },
-    fadeWords(quotewords) {
-      Array.prototype.forEach.call(quotewords, word => {
-        word.animate([{
-          opacity: 0,
-          filter: 'blur(' + this.getRandom(2, 5) + 'px)'
-        }, {
-          opacity: 1,
-          filter: 'blur(0px)'
-        }],
-          {
-            duration: 1000,
-            delay: this.getRandom(500, 3300),
-            fill: 'forwards'
-          }
-        )
-      })
-    }
-  }
-}
-</script>
 <style scoped>
-blockquote {
-    background-color: #333333;
-    font-size: 3rem;
-  }
-  cite {
-    display: block;
-    text-align: right;
-    font-family: Verdana, Arial, sans-serif;
-    margin-top: 1rem;
-    font-size: .9rem;
-    color: #aaa;
-    font-style: normal;
-  }
-  blockquote q {
-    font-family: Georgia, serif;
-    font-style: italic;
-    color: #DC143C;
-    letter-spacing: .1rem;
-  }
-  blockquote q span {
-    will-change: opacity, filter;
-    opacity: 0;
-    filter: blur(0px);
-  }
-  q {
-    quotes: '“' '”' '‘' '’';
-  }
-  q:before {
-    content: open-quote;
-    margin-right: .8rem;
-  }
-  q:after {
-    content: close-quote;
-  }
-  q:before,
-  q:after {
-    color: #ccc;
-    font-size: 4rem;
-  }
-  .topInput {
-    margin-left: 38%
-  }
-  /* input */
+/* input */
 		.input {
 			position: relative;
 			z-index: 1;
@@ -194,7 +82,6 @@ blockquote {
 
         .input__field--kuro {
             width: 100%;
-            margin-top: 1%;
             background: transparent;
             color: #9196A1;
             opacity: 0;
@@ -295,4 +182,4 @@ blockquote {
         }
 </style>
 
- 
+
