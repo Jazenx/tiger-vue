@@ -29,8 +29,7 @@
     </footer>
   </section>
 </template>
-
-<<script>
+<script>
 import tigerTodo from './todo'
 const STORAGE_KEY = 'todos'
 const filters = {

@@ -42,7 +42,6 @@
     methods: {
       initChart() {
         this.chart = echarts.init(document.getElementById(this.id));
-
         this.chart.setOption({
           backgroundColor: '#394056',
           title: {
