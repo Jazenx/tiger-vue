@@ -52,7 +52,7 @@ export default {
     getWeiboList() {
       getWeiboData().then(response => {
         this.weiboData = response.data;
-        // console.log(this.weiboData);
+        console.log(response.data);
       }).catch(err => {
         this.fetchSuccess = false;
         console.log(err);
