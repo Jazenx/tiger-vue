@@ -5,9 +5,8 @@
 
 <script>
 import echarts from 'echarts';
-import '../../../../assets/echarts/map/china'
-
-
+import 'assets/echarts/map/china';
+import getWeiboData from 'api/tiger'
 export default {
   props: {
     className: {
@@ -33,7 +32,11 @@ export default {
       weiboData
     }
   },
+  created() {
+    this.getWeiboList();
+  },
   mounted() {
+    this.getWeiboData()
     this.initChart();
   },
   beforeDestroy() {
@@ -45,9 +48,13 @@ export default {
   },
 
   methods: {
-    getWeiboData() {
-      // get data;
-      // http://echarts.baidu.com/gallery/data/asset/data/weibo.json
+    getWeiboList() {
+      getWeiboData().then(response => {
+        this.weiboData = response.data;
+      }).catch(err => {
+        this.fetchSuccess = false;
+        console.log(err);
+      })
     },
     initChart() {
       this.chart = echarts.init(document.getElementById(this.id));
