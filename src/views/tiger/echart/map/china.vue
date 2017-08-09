@@ -6,8 +6,9 @@
 <script>
 import echarts from 'echarts';
 import 'assets/echarts/map/china';
-import getWeiboData from 'api/tiger'
+import { getWeiboData } from 'api/tiger'
 export default {
+  name: 'tigerChinaMap',
   props: {
     className: {
       type: String,
@@ -29,14 +30,13 @@ export default {
   data() {
     return {
       chart: null,
-      weiboData
+      weiboData: []
     }
   },
   created() {
     this.getWeiboList();
   },
   mounted() {
-    this.getWeiboData()
     this.initChart();
   },
   beforeDestroy() {
@@ -50,7 +50,10 @@ export default {
   methods: {
     getWeiboList() {
       getWeiboData().then(response => {
+        console.log(response.data);
         this.weiboData = response.data;
+        console.log('----获取地图数据----');
+        console.log(this.weiboData);
       }).catch(err => {
         this.fetchSuccess = false;
         console.log(err);
@@ -108,7 +111,7 @@ export default {
               color: 'rgba(37, 140, 249, 0.8)'
             }
           },
-          data: weiboData[0]
+          data: this.weiboData[0]
         }, {
           name: '中',
           type: 'scatter',
@@ -122,7 +125,7 @@ export default {
               color: 'rgba(14, 241, 242, 0.8)'
             }
           },
-          data: weiboData[1]
+          data: this.weiboData[1]
         }, {
           name: '强',
           type: 'scatter',
@@ -136,7 +139,7 @@ export default {
               color: 'rgba(255, 255, 255, 0.8)'
             }
           },
-          data: weiboData[2]
+          data: this.weiboData[2]
         }]
       });
     }
