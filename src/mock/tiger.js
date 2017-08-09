@@ -1,12 +1,14 @@
+import axios from 'axios';
 
-const List = [[], [], []];
-const count = 1000;
+const List = [];
 
-for (let i = 0; i < count; i++) {
-  List[0].push(parseInt(Math.random() * 10000));
-  List[1].push(parseInt(Math.random() * 10000));
-  List[2].push(parseInt(Math.random() * 10000));
-}
+axios.get('http://echarts.baidu.com/gallery/data/asset/data/weibo.json')
+  .then(response => {
+    console.log(response);
+  })
+  .catch(error => {
+    console.log(error);
+  });
 
 export default {
   getWeiboData: () => List

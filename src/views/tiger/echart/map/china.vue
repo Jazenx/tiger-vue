@@ -52,7 +52,7 @@ export default {
     getWeiboList() {
       getWeiboData().then(response => {
         this.weiboData = response.data;
-        console.log(this.weiboData);
+        // console.log(this.weiboData);
       }).catch(err => {
         this.fetchSuccess = false;
         console.log(err);
@@ -63,7 +63,7 @@ export default {
       const option = {
         backgroundColor: '#404a59',
         title: {
-          text: '微博签到数据点亮中国',
+          text: '中国热点图',
           subtext: 'From Jason',
           sublink: '',
           left: 'center',
@@ -110,7 +110,7 @@ export default {
               color: 'rgba(37, 140, 249, 0.8)'
             }
           },
-          data: this.weiboData[0]
+          data: this.weiboData
         }, {
           name: '中',
           type: 'scatter',
@@ -124,7 +124,7 @@ export default {
               color: 'rgba(14, 241, 242, 0.8)'
             }
           },
-          data: this.weiboData[1]
+          data: this.weiboData
         }, {
           name: '强',
           type: 'scatter',
@@ -138,7 +138,7 @@ export default {
               color: 'rgba(255, 255, 255, 0.8)'
             }
           },
-          data: this.weiboData[2]
+          data: this.weiboData
         }]
       }
       this.chart.setOption(option);
