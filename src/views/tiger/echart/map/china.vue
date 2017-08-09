@@ -5,7 +5,8 @@
 
 <script>
 import echarts from 'echarts';
-import 'assets/echarts/map/china';
+// import 'assets/echarts/map/china';
+import 'echarts/map/js/china.js';
 import { getWeiboData } from 'api/tiger'
 export default {
   name: 'tigerChinaMap',
