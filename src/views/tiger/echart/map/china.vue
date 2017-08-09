@@ -20,11 +20,11 @@ export default {
     },
     width: {
       type: String,
-      default: '200px'
+      default: '1000px'
     },
     height: {
       type: String,
-      default: '200px'
+      default: '800px'
     }
   },
   data() {
@@ -50,9 +50,7 @@ export default {
   methods: {
     getWeiboList() {
       getWeiboData().then(response => {
-        console.log(response.data);
         this.weiboData = response.data;
-        console.log('----获取地图数据----');
         console.log(this.weiboData);
       }).catch(err => {
         this.fetchSuccess = false;
@@ -61,7 +59,7 @@ export default {
     },
     initChart() {
       this.chart = echarts.init(document.getElementById(this.id));
-      this.chart.setOption(option = {
+      const option = {
         backgroundColor: '#404a59',
         title: {
           text: '微博签到数据点亮中国',
@@ -141,7 +139,8 @@ export default {
           },
           data: this.weiboData[2]
         }]
-      });
+      }
+      this.chart.setOption(option);
     }
   }
 }

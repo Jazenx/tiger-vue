@@ -3,6 +3,7 @@ import loginAPI from './login';
 import articleAPI from './article';
 import article_tableAPI from './article_table';
 import remoteSearchAPI from './remoteSearch';
+import tigerAPI from './tiger';
 
 
 // 登录相关
@@ -21,5 +22,7 @@ Mock.mock(/\/article_table\/p/, 'get', article_tableAPI.getPv);
 // // 搜索相关
 Mock.mock(/\/search\/user/, 'get', remoteSearchAPI.searchUser);
 
+// tiger
+Mock.mock(/\/tiger\/getWeiboData/, 'get', tigerAPI.getWeiboData);
 
 export default Mock;
