@@ -21,18 +21,8 @@ import axios from 'axios';
 //   }
 //   return res;
 // });
-export function getData() {
-  let dataJson = [];
-  axios.get('/static/weibo.json')
-    .then(response =>
-      response.data)
-    .catch(error => {
-      console.log(error);
-    });
-  console.log(dataJson);
-}
 
-getData();
+
 
 export default {
   getWeiboData: () => null

@@ -7,7 +7,7 @@
 import echarts from 'echarts';
 // import 'assets/echarts/map/china';
 import 'echarts/map/js/china.js';
-import { getWeiboData } from 'api/tiger'
+import { getWeiboData } from 'api/tiger';
 export default {
   name: 'tigerChinaMap',
   props: {
@@ -31,11 +31,12 @@ export default {
   data() {
     return {
       chart: null,
-      weiboData: []
+      weiboData: null
     }
   },
   created() {
     this.getWeiboList();
+    console.log(this.weiboData);
   },
   mounted() {
     this.initChart();
@@ -47,15 +48,10 @@ export default {
     this.chart.dispose();
     this.chat = null;
   },
-
   methods: {
     getWeiboList() {
       getWeiboData().then(response => {
         this.weiboData = response.data;
-        console.log(response.data);
-      }).catch(err => {
-        this.fetchSuccess = false;
-        console.log(err);
       })
     },
     initChart() {
@@ -110,7 +106,7 @@ export default {
               color: 'rgba(37, 140, 249, 0.8)'
             }
           },
-          data: this.weiboData
+          data: this.weiboData[0]
         }, {
           name: '中',
           type: 'scatter',
@@ -124,7 +120,7 @@ export default {
               color: 'rgba(14, 241, 242, 0.8)'
             }
           },
-          data: this.weiboData
+          data: this.weiboData[1]
         }, {
           name: '强',
           type: 'scatter',
@@ -138,7 +134,7 @@ export default {
               color: 'rgba(255, 255, 255, 0.8)'
             }
           },
-          data: this.weiboData
+          data: this.weiboData[2]
         }]
       }
       this.chart.setOption(option);

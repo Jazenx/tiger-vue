@@ -1,9 +1,9 @@
-import fetch from 'utils/fetch';
+import fetch from 'utils/tigerFetch';
 
 export function getWeiboData() {
   return fetch({
     // url: 'http://echarts.baidu.com/gallery/data/asset/data/weibo.json',
-    url: 'tiger/getWeiboData',
+    url: '/static/weibo.json',
     method: 'get'
   })
 }
