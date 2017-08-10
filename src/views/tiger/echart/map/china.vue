@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       chart: null,
-      weiboDatax: null
+      weiboDatax: [1, 2, 3]
     }
   },
   created() {
@@ -49,14 +49,15 @@ export default {
   },
   methods: {
     getWeiboList() {
-      getWeiboData().then(response => {
-        this.weiboDatax = response.data;
-      }).catch(err => {
-        console.log(err);
-      })
+      this.weiboDatax = getWeiboData()
+        .then(response => response.data)
+        .catch(err => console.log(err))
+      console.log(this.weiboDatax);
+      return this.weiboDatax
     },
     initChart() {
-      console.log(this.weiboDatax);
+      const weiboData = this.weiboDatax;
+      console.log(weiboData);
       this.chart = echarts.init(document.getElementById(this.id));
       const option = {
         backgroundColor: '#404a59',
@@ -108,7 +109,7 @@ export default {
               color: 'rgba(37, 140, 249, 0.8)'
             }
           },
-          data: this.weiboData[0]
+          data: weiboData[0]
         }, {
           name: '中',
           type: 'scatter',
@@ -122,7 +123,7 @@ export default {
               color: 'rgba(14, 241, 242, 0.8)'
             }
           },
-          data: this.weiboData[1]
+          data: weiboData[1]
         }, {
           name: '强',
           type: 'scatter',
@@ -136,7 +137,7 @@ export default {
               color: 'rgba(255, 255, 255, 0.8)'
             }
           },
-          data: this.weiboData[2]
+          data: weiboData[2]
         }]
       }
       this.chart.setOption(option);
