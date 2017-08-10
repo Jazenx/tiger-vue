@@ -31,12 +31,11 @@ export default {
   data() {
     return {
       chart: null,
-      weiboData: null
+      weiboDatax: null
     }
   },
   created() {
     this.getWeiboList();
-    console.log(this.weiboData);
   },
   mounted() {
     this.initChart();
@@ -51,10 +50,13 @@ export default {
   methods: {
     getWeiboList() {
       getWeiboData().then(response => {
-        this.weiboData = response.data;
+        this.weiboDatax = response.data;
+      }).catch(err => {
+        console.log(err);
       })
     },
     initChart() {
+      console.log(this.weiboDatax);
       this.chart = echarts.init(document.getElementById(this.id));
       const option = {
         backgroundColor: '#404a59',
