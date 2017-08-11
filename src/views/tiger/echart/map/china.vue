@@ -34,12 +34,8 @@ export default {
       weibo: []
     }
   },
-  beforeCreate() {
-    this.getWeiboList();
-    console.log(this.weibo);
-  },
   mounted() {
-    this.initChart();
+    this.getWeiboList();
   },
   beforeDestroy() {
     if (!this.chart) {
@@ -53,6 +49,7 @@ export default {
       getWeiboData()
         .then(response => {
           this.weibo = response.data;
+          this.initChart();
         })
         .catch(err => console.log(err))
     },
