@@ -58,6 +58,23 @@ export default {
     },
     initChart() {
       console.log(this.weibo);
+      this.weibo = this.weibo.map(serieData => {
+        let px = serieData[0] / 1000;
+        let py = serieData[1] / 1000;
+        const res = [[px, py]];
+
+        for (let i = 2; i < serieData.length; i += 2) {
+          const dx = serieData[i] / 1000;
+          const dy = serieData[i + 1] / 1000;
+          const x = px + dx;
+          const y = py + dy;
+          res.push([x.toFixed(2), y.toFixed(2), 1]);
+          px = x;
+          py = y;
+        }
+        return res;
+      });
+      console.log(this.weibo);
       this.chart = echarts.init(document.getElementById(this.id));
       const option = {
         backgroundColor: '#404a59',
@@ -71,7 +88,7 @@ export default {
             color: '#fff'
           }
         },
-        tooltip: {},
+        // tooltip: {},
         legend: {
           left: 'left',
           data: ['强', '中', '弱'],
