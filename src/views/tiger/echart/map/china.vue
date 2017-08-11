@@ -91,7 +91,7 @@ export default {
         // tooltip: {},
         legend: {
           left: 'left',
-          data: ['强', '中', '弱'],
+          data: ['弱', '中', '强'],
           textStyle: {
             color: '#ccc'
           }
