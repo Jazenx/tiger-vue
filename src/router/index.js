@@ -68,6 +68,7 @@ const Permission = _import('permission/index');
 const tigerIndex = _import('tiger/index');
 const tigerVerse = _import('tiger/verse/index');
 const tigerChart = _import('tiger/echart/index');
+const tigerVideo = _import('tiger/video/index');
 
 
 Vue.use(Router);
@@ -119,7 +120,8 @@ export const asyncRouterMap = [
     children: [
       { path: 'index', component: tigerIndex, name: 'todo list' },
       { path: 'verse', component: tigerVerse, name: 'Verse' },
-      { path: 'chart', component: tigerChart, name: 'Chart' }
+      { path: 'chart', component: tigerChart, name: 'Chart' },
+      { path: 'video', component: tigerVideo, name: 'Video' }
     ]
   },
   {
